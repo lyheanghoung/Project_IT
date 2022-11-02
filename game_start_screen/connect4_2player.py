@@ -123,7 +123,6 @@ while not game_over:
 						screen.blit(label, (40,10))
 						game_over = True
 
-
 			# # Ask for Player 2 Input
 			else:				
 				posx = event.pos[0]
