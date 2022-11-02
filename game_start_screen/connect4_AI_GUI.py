@@ -1,4 +1,4 @@
-from connect4 import Connect4
+from connect4_AI import Connect4
 import pygame
 import sys
 import random
@@ -76,9 +76,9 @@ class Connect4_GUI(Connect4):
                         self.draw_board()
                         if self.get_winner():
                             if human_player == 1:
-                                label = myfont.render("Human wins!!!", 1, self.RED)
+                                label = myfont.render("You wins!!!", 1, self.RED)
                             else:
-                                label = myfont.render("Human wins!!!", 1, self.YELLOW)
+                                label = myfont.render("You wins!!!", 1, self.YELLOW)
                             self.SCREEN.blit(label, (40,10))
                             self.draw_board()
                             winner = True
@@ -94,9 +94,9 @@ class Connect4_GUI(Connect4):
                         self.draw_board()
                         if self.get_winner():
                             if player == 1:
-                                label = myfont.render("Human loses!", 1, self.RED)
+                                label = myfont.render("You loses!", 1, self.RED)
                             else:
-                                label = myfont.render("Human loses!", 1, self.YELLOW)
+                                label = myfont.render("You loses!", 1, self.YELLOW)
                             self.SCREEN.blit(label, (40,10))
                             self.draw_board()
                             winner = True
