@@ -7,7 +7,8 @@ SCREEN = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Menu")
 
 BG = pygame.image.load("assets/Background4.webp")
-
+instruction1 = pygame.image.load("assets/1player.png")
+instruction2 = pygame.image.load("assets/2player.png")
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/8-BIT WONDER.TTF", size)
 
@@ -41,14 +42,15 @@ def instructions():
     while True:
         INSTRUCTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
-        SCREEN.fill("white")
-
-        INSTRUCTIONS_TEXT = get_font(45).render("How to Play Connect4", True, "Black")
-        INSTRUCTIONS_RECT = INSTRUCTIONS_TEXT.get_rect(center=(640, 260))
+        SCREEN.blit(BG, (0, 0))
+        SCREEN.blit(instruction1, (130,180))
+        SCREEN.blit(instruction2, (700, 180))
+        INSTRUCTIONS_TEXT = get_font(60).render("How to Play Connect4", True, "#ff0000")
+        INSTRUCTIONS_RECT = INSTRUCTIONS_TEXT.get_rect(center=(640, 90))
         SCREEN.blit(INSTRUCTIONS_TEXT, INSTRUCTIONS_RECT)
 
-        INSTRUCTIONS_BACK = Button(image=None, pos=(640, 460), 
-                            text_input="BACK", font=get_font(75), base_color="Black", hovering_color="Green")
+        INSTRUCTIONS_BACK = Button(image=None, pos=(640, 650), 
+                            text_input="BACK", font=get_font(55), base_color="#ffda29", hovering_color="Green")
 
         INSTRUCTIONS_BACK.changeColor(INSTRUCTIONS_MOUSE_POS)
         INSTRUCTIONS_BACK.update(SCREEN)
