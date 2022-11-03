@@ -9,25 +9,36 @@ pygame.display.set_caption("Menu")
 BG = pygame.image.load("assets/Background4.webp")
 instruction1 = pygame.image.load("assets/1player.png")
 instruction2 = pygame.image.load("assets/2player.png")
+
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/8-BIT WONDER.TTF", size)
 
 def play():
     while True:
+        SCREEN.blit(BG, (0, 0))
+
+        MENU_MOUSE_POS = pygame.mouse.get_pos()
         PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
-        SCREEN.fill("black")
+        MENU_TEXT = get_font(50).render("Please Choose Player", True, "#ff0000")
+        MENU_RECT = MENU_TEXT.get_rect(center=(640, 120))
 
-        PLAY_TEXT = get_font(45).render("This is the PLAY screen.", True, "White")
-        PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 260))
-        SCREEN.blit(PLAY_TEXT, PLAY_RECT)
+        PLAYER1_BUTTON = Button(image=pygame.image.load("assets/Instructions Rect.png"), pos=(640, 280), 
+                            text_input="1 PLAYER", font=get_font(48), base_color="#ffda29", hovering_color="White")
+        PLAYER2_BUTTON = Button(image=pygame.image.load("assets/Instructions Rect.png"), pos=(640, 460), 
+                            text_input="2 PLAYERS", font=get_font(48), base_color="#ffDA29", hovering_color="White")
+        
+        SCREEN.blit(MENU_TEXT, MENU_RECT)
 
-        PLAY_BACK = Button(image=None, pos=(640, 460), 
-                            text_input="BACK", font=get_font(75), base_color="White", hovering_color="Green")
+        PLAY_BACK = Button(image=None, pos=(640, 600), text_input="BACK", font=get_font(40), base_color="#ffda29", hovering_color="Green")
 
         PLAY_BACK.changeColor(PLAY_MOUSE_POS)
         PLAY_BACK.update(SCREEN)
 
+        for button in [PLAYER1_BUTTON, PLAYER2_BUTTON]:
+            button.changeColor(MENU_MOUSE_POS)
+            button.update(SCREEN)
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -35,7 +46,6 @@ def play():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
                     main_menu()
-
         pygame.display.update()
     
 def instructions():
@@ -50,7 +60,7 @@ def instructions():
         SCREEN.blit(INSTRUCTIONS_TEXT, INSTRUCTIONS_RECT)
 
         INSTRUCTIONS_BACK = Button(image=None, pos=(640, 650), 
-                            text_input="BACK", font=get_font(55), base_color="#ffda29", hovering_color="Green")
+                            text_input="BACK", font=get_font(40), base_color="#ffda29", hovering_color="Green")
 
         INSTRUCTIONS_BACK.changeColor(INSTRUCTIONS_MOUSE_POS)
         INSTRUCTIONS_BACK.update(SCREEN)
