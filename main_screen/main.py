@@ -124,6 +124,7 @@ def play():
                         BLACK = (0, 0, 0)
                         RED = (255, 0, 0)
                         YELLOW = (255, 255, 0)
+                        # coin1 = pygame.image.load("assets/coin1.jpg")
 
                         SQUARESIZE = 100
                         WIDTH = Connect4.NUM_COLS*SQUARESIZE
@@ -187,7 +188,7 @@ def play():
                                             self.draw_board()
                                             if self.get_winner():
                                                 if human_player == 1:
-                                                    label = myfont.render("You win!!!", 1, self.RED)
+                                                    label = myfont.render("You win!!!", 1, self.coin1)
                                                     pygame.time.wait(3000)
                                                     play()
                                                 else:
@@ -207,7 +208,7 @@ def play():
                                             self.draw_board()
                                             if self.get_winner():
                                                 if player == 1:
-                                                    label = myfont.render("You lose!", 1, self.RED)
+                                                    label = myfont.render("You lose!", 1, self.coin1)
                                                     pygame.time.wait(3000)
                                                     play()
                                                 else:
