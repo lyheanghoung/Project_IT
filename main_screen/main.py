@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame
 from button import Button
 import numpy as np
 import pygame
@@ -9,7 +9,7 @@ import math
 pygame.init()
 
 SCREEN = pygame.display.set_mode((1000, 900))
-pygame.display.set_caption("Menu")
+pygame.display.set_caption("Connect4 Game")
 
 BG = pygame.image.load("assets/Background4.webp")
 instruction1 = pygame.image.load("assets/1player.png")
@@ -28,14 +28,14 @@ def play():
         MENU_TEXT = get_font(50).render("Please Choose Player", True, "#ff0000")
         MENU_RECT = MENU_TEXT.get_rect(center=(500, 120))
 
-        PLAYER1_BUTTON = Button(image=pygame.image.load("assets/Instructions Rect.png"), pos=(500, 350), 
+        PLAYER1_BUTTON = Button(image=pygame.image.load("assets/Instructions Rect.png"), pos=(500, 300), 
                             text_input="1 PLAYER", font=get_font(48), base_color="#ffda29", hovering_color="White")
-        PLAYER2_BUTTON = Button(image=pygame.image.load("assets/Instructions Rect.png"), pos=(500, 520), 
+        PLAYER2_BUTTON = Button(image=pygame.image.load("assets/Instructions Rect.png"), pos=(500, 450), 
                             text_input="2 PLAYERS", font=get_font(48), base_color="#ffDA29", hovering_color="White")
         
         SCREEN.blit(MENU_TEXT, MENU_RECT)
 
-        PLAY_BACK = Button(image=None, pos=(500, 700), text_input="BACK", font=get_font(40), base_color="#ffda29", hovering_color="Green")
+        PLAY_BACK = Button(image=None, pos=(500, 620), text_input="BACK", font=get_font(50), base_color="#ffda29", hovering_color="Green")
 
         PLAY_BACK.changeColor(PLAY_MOUSE_POS)
         PLAY_BACK.update(SCREEN)
@@ -153,7 +153,7 @@ def play():
 
                         def run_game(self):
                             pygame.init()
-                            myfont = pygame.font.SysFont("monospace", 75)
+                            myfont = pygame.font.Font("assets/8-BIT WONDER.TTF", 50)
                             self.draw_board()
                             pygame.display.update()
 
@@ -188,11 +188,13 @@ def play():
                                             self.draw_board()
                                             if self.get_winner():
                                                 if human_player == 1:
-                                                    label = myfont.render("You win!!!", 1, self.coin1)
-                                                    pygame.time.wait(3000)
-                                                    play()
+                                                    label = myfont.render("Horayyy You Win", 1, self.RED)
+                                                    # pygame.time.wait(3000)
+                                                    # play()
                                                 else:
-                                                    label = myfont.render("You win!!!", 1, self.YELLOW)
+                                                    label = myfont.render("Horayyy You Win", 1, self.YELLOW)
+                                                    # pygame.time.wait(3000)
+                                                    # play()
                                                 self.SCREEN.blit(label, (40,10))
                                                 self.draw_board()
                                                 winner = True
@@ -208,11 +210,11 @@ def play():
                                             self.draw_board()
                                             if self.get_winner():
                                                 if player == 1:
-                                                    label = myfont.render("You lose!", 1, self.coin1)
+                                                    label = myfont.render("Try Again You Lose", 1, self.coin1)
                                                     pygame.time.wait(3000)
                                                     play()
                                                 else:
-                                                    label = myfont.render("You lose!", 1, self.YELLOW)
+                                                    label = myfont.render("Try Again You Lose", 1, self.YELLOW)
                                                     # pygame.time.wait(3000)
                                                     # play()
                                                 self.SCREEN.blit(label, (40,10))
@@ -325,7 +327,7 @@ def play():
                     draw_board(board)
                     pygame.display.update()
 
-                    myfont = pygame.font.SysFont("monospace", 75)
+                    myfont = pygame.font.Font("assets/8-BIT WONDER.TTF", 50)
 
                     while not game_over:
 
@@ -355,7 +357,7 @@ def play():
                                         drop_piece(board, row, col, 1)
 
                                         if winning_move(board, 1):
-                                            label = myfont.render("Player 1 wins!!", 1, RED)
+                                            label = myfont.render("Horayyy Player 1 wins", 1, RED)
                                             screen.blit(label, (40,10))
                                             game_over = True
 
@@ -369,7 +371,7 @@ def play():
                                         drop_piece(board, row, col, 2)
 
                                         if winning_move(board, 2):
-                                            label = myfont.render("Player 2 wins!!", 1, YELLOW)
+                                            label = myfont.render("Horayyy Player 2 wins", 1, YELLOW)
                                             screen.blit(label, (40,10))
                                             game_over = True
 
@@ -389,14 +391,14 @@ def instructions():
         INSTRUCTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
         SCREEN.blit(BG, (0, 0))
-        SCREEN.blit(instruction1, (130,180))
-        SCREEN.blit(instruction2, (700, 180))
-        INSTRUCTIONS_TEXT = get_font(60).render("How to Play Connect4", True, "#ff0000")
-        INSTRUCTIONS_RECT = INSTRUCTIONS_TEXT.get_rect(center=(640, 90))
+        SCREEN.blit(instruction1, (35,220))
+        SCREEN.blit(instruction2, (520,220))
+        INSTRUCTIONS_TEXT = get_font(50).render("How to Play Connect4", True, "#ff0000")
+        INSTRUCTIONS_RECT = INSTRUCTIONS_TEXT.get_rect(center=(500, 100))
         SCREEN.blit(INSTRUCTIONS_TEXT, INSTRUCTIONS_RECT)
 
-        INSTRUCTIONS_BACK = Button(image=None, pos=(640, 650), 
-                            text_input="BACK", font=get_font(40), base_color="#ffda29", hovering_color="Green")
+        INSTRUCTIONS_BACK = Button(image=None, pos=(500, 750), 
+                            text_input="BACK", font=get_font(50), base_color="#ffda29", hovering_color="Green")
 
         INSTRUCTIONS_BACK.changeColor(INSTRUCTIONS_MOUSE_POS)
         INSTRUCTIONS_BACK.update(SCREEN)
